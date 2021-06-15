@@ -2,7 +2,7 @@
 
 The Autonomous Surface Vehicle (ASV) System Package is a collection of ROS
 packages developed by Thomas Stenersen as a part of his master's thesis.
-I am using the simulator and adding a simulation based mpc controller.
+I am using the simulator and adding a simulation based mpc controller and DRL controller.
 
 
 ## Contents
@@ -32,7 +32,7 @@ This package contains:
 
 ##  Tips
 
-* start_state: 就是设置asv_simulator里面的initial state，采用setState函数
+<!-- * start_state: 就是设置asv_simulator里面的initial state，采用setState函数
 * goal: 通过service设置，在每一轮开始时设置,，在los_asv.py中
 * waypoint: 就是用actionlib发送goal，等待执行完，接收执行结果
-* 
+*  -->
