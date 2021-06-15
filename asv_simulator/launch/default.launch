@@ -1,0 +1,37 @@
+﻿<launch>
+  <arg name="u_d" default="3.0" />
+  <arg name="waypoint_file" default="$(find asv_simulator)/config/waypoints/asv_waypoint_list.yaml" />
+  <arg name="vessel_param_file" default="$(find asv_simulator)/config/parameters/viknes.yaml" />
+  <arg name="vessel_model_file" default="$(find asv_simulator)/config/models/viknes.urdf" />
+  <arg name="initial_state" default="[0.0, 0.0, 0, 0.,0.,0.]" />
+  <arg name="use_vo" default="False" />
+  <arg name="use_sb_mpc" default="False" />
+  <arg name="namespace" default="asv" />
+  <arg name="shipname" default="asv" />
+
+  <group ns="$(arg namespace)">
+    <node pkg="asv_simulator" name="$(arg shipname)" type="asv_simulator_node" respawn="false" output="screen">
+      <rosparam param="initial_state" subst_value="True">$(arg initial_state)</rosparam>
+      <rosparam command="load" file="$(arg vessel_param_file)" />
+    </node>
+
+    <node pkg="asv_path_trackers" name="LOSNode" type="asv_ctrl_los_node.py" respawn="false" output="screen">
+      <rosparam param="u_d" subst_value="True">$(arg u_d)</rosparam>
+      <rosparam command="load" file="$(arg waypoint_file)" />
+      <remap from="cmd_vel" to="LOS/cmd_vel" if="$(arg use_vo)"/>
+      <remap from="cmd_vel" to="LOS/cmd_vel" if="$(arg use_sb_mpc)"/>
+    </node>
+
+    <param name="robot_description" textfile="$(arg vessel_model_file)" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="tf_broadcaster" />
+  </group>
+
+  <group if="$(arg use_vo)">
+    <node pkg="asv_ctrl_vo" name="vo_node" type="asv_ctrl_vo_node" respawn="false" output="screen" />
+  </group>
+
+  <group if="$(arg use_sb_mpc)">
+    <node pkg="asv_ctrl_sb_mpc" name="sb_mpc_node" type="asv_ctrl_sb_mpc_node" respawn="false" output="screen" />
+  </group>
+
+</launch>

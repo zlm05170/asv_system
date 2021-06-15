@@ -1,0 +1,5 @@
+frame_id: "/map"
+circles:
+  - type: 0 
+    center: [0., 0.]
+    radius: 10.0

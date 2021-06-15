@@ -1,0 +1,51 @@
+﻿<launch>
+
+  <include file="$(find asv_simulator)/launch/asv.launch">
+    <arg name="u_d" value="3.0" />
+    <arg name="namespace" value="asv" />
+    <arg name="shipname" value="asv" />
+    <arg name="initial_state" value="[-50., 0.0, -1.57, 1.,0.,0.]" />
+  </include>
+
+  <include file="$(find asv_simulator)/launch/default.launch">
+    <arg name="waypoint_file" value="$(find asv_simulator)/config/waypoints/ship1_head_on.yaml" />
+    <arg name="use_vo" value="False" />
+    <arg name="use_sb_mpc" value="False" />
+    <arg name="vessel_model_file" value="$(find asv_simulator)/config/models/ship1.urdf" />
+    <arg name="namespace" value="obstacles/ship1" />
+    <arg name="shipname" value="ship1" />
+    <arg name="initial_state" value="[-50.0, -400.0, 1.57, 5.,0.,0.]" />
+  </include>
+
+  <include file="$(find asv_simulator)/launch/default.launch">
+    <arg name="waypoint_file" value="$(find asv_simulator)/config/waypoints/ship2_cross_star_headon.yaml" />
+    <arg name="use_vo" value="False" />
+    <arg name="use_sb_mpc" value="False" />
+    <arg name="vessel_model_file" value="$(find asv_simulator)/config/models/ship2.urdf" />
+    <arg name="namespace" value="obstacles/ship2" />
+    <arg name="shipname" value="ship2" />
+    <arg name="initial_state" value="[-300.0, -250.0, 0, 3.,0.,0.]" />
+  </include>
+
+  <include file="$(find asv_obstacle_tracker)/launch/tracker.launch"/>
+
+  <!-- <include file="$(find asv_system)/launch/map_server.launch">
+    <arg name="mapfile" value="$(find asv_system)/config/maps/empty.yaml" />
+  </include>
+  <node pkg="asv_simulator" name="map_mesh_node" type="meshpublisher.py" respawn="false" output="screen" />
+   -->
+  <include file="$(find asv_system)/launch/map_server.launch">
+    <arg name="mapfile" value="$(find asv_system)/config/maps/hovik.yaml" />
+  </include>
+  <node pkg="asv_simulator" name="map_mesh_node" type="meshpublisher.py" respawn="false" output="screen" />
+ 
+  <node name="light_scan_sim" pkg="light_scan_sim" type="light_scan_sim_node" output="screen">
+    <rosparam file="$(find light_scan_sim)/config/config_asv.yaml" command="load" />
+  </node>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find asv_simulator)/config/rviz/drl.rviz" />
+
+  <node pkg="rosbag" type="record" name="rosbag_record" args="-O /home/luman/data/cross_head_on.bag  /tf /asv/state /asv/pose /asv/path /asv/waypoints  /obstacles/ship1/state  /obstacles/ship2/state" />
+
+
+</launch>

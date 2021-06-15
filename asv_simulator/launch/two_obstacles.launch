@@ -1,0 +1,55 @@
+<launch>
+  <group ns="obstacles">
+    <!-- **************** SHIP 1 **************** -->
+    <group ns="ship1">
+      <node pkg="asv_simulator"
+            name="ship1"
+            type="asv_simulator_node"
+            respawn="false"
+            output="screen">
+        <rosparam param="initial_state">[0.0, 100.0, 1.57, 1.0, 0.0, 0.0]</rosparam>
+        <rosparam command="load" file="$(find asv_simulator)/config/parameters/viknes.yaml" />
+      </node>
+      <node pkg="asv_path_trackers"
+            name="LOSNode"
+            type="asv_ctrl_los_node.py"
+            respawn="false"
+            output="screen">
+        <rosparam param="u_d">1.0</rosparam>
+        <rosparam command="load" file="$(find asv_simulator)/config/waypoints/ship1_waypoint_list.yaml" />
+      </node>
+
+      <param name="robot_description" textfile="$(find asv_simulator)/config/models/ship1.urdf" />
+
+      <node pkg="robot_state_publisher"
+            type="robot_state_publisher"
+            name="tf_broadcaster2" />
+    </group>
+
+    <!-- **************** SHIP 2 **************** -->
+    <group ns="ship2">
+      <node pkg="asv_simulator"
+            name="ship2"
+            type="asv_simulator_node"
+            respawn="false"
+            output="screen">
+        <rosparam param="initial_state">[250.0, 250.0, 3.1415, 1.0, 0.0, 0.0]</rosparam>
+        <rosparam command="load" file="$(find asv_simulator)/config/parameters/viknes.yaml" />
+      </node>
+      <node pkg="asv_path_trackers"
+            name="LOSNode"
+            type="asv_ctrl_los_node.py"
+            respawn="false"
+            output="screen">
+        <rosparam param="u_d">3.0</rosparam>
+        <rosparam command="load" file="$(find asv_simulator)/config/waypoints/ship2_waypoint_list.yaml" />
+      </node>
+
+      <param name="robot_description" textfile="$(find asv_simulator)/config/models/ship2.urdf" />
+
+      <node pkg="robot_state_publisher"
+            type="robot_state_publisher"
+            name="tf_broadcaster2" />
+    </group>
+  </group>
+</launch>

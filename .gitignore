@@ -1,0 +1,11 @@
+.vscode
+~
+*.bag
+__pycache__
+*.bak
+log
+*.pyc
+summary
+model
+*.zip
+*.ckpt.*

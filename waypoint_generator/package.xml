@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>waypoint_generator</name>
+  <version>1.1.0</version>
+  <description>The waypoint_generator package</description>
+
+  <maintainer email="angelxx05170@gmail.com">Luman Zhao</maintainer>
+  <license>TODO</license>
+
+  <author email="angelxx05170@gmail.com">Luman Zhao</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>asv_msgs</depend>
+  <depend>asv_path_trackers</depend>
+  <depend>asv_simulator</depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+
+</package>

@@ -1,0 +1,12 @@
+<launch>
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find usv_docking)/rviz/docking.rviz" /> -->
+    <node pkg="waypoint_generator" name="drl_wpt" type="run_wpt.py"  output="screen">
+        <!-- <param name="ob_dim" value="12" /> -->
+    	<param name="ac_type" value="discrete" />
+    	<param name="num_timesteps" value="100000000" />
+    	<param name="train" value="false" />
+    	<param name="restore" value="true" />
+    	<param name="save_csv" value="false" />
+		<param name="save_path" value="$(find waypoint_generator)/results/" />
+    </node>
+</launch>

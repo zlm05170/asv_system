@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="asv_obstacle_tracker" name="obstacle_tracker_node" type="obstacle_tracker_node.py" respawn="false" output="screen">
+  </node>
+</launch>

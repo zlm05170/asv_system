@@ -1,0 +1,7 @@
+materials:
+  - name: "Circle"
+    min_return: 1.0  # Base hance of returning on collision
+    max_return: 1.0
+    angular_return: 0.0
+    type: opaque  # on failed return, beam is absorbed
+    color: [0., 0., 0.]  # Dark gre

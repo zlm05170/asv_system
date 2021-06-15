@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package>
+  <name>asv_simulator</name>
+  <version>1.1.0</version>
+  <description>
+    This package provides a simulated nonlinear 3DOF surface vessel.
+  </description>
+
+  <maintainer email="stenersen.thomas@gmail.com">Thomas Stenersen</maintainer>
+
+  <license>MIT</license>
+
+  <url type="repository">http://github.com/thomsten/asv_simulator</url>
+
+  <author email="stenersen.thomas@gmail.com">Thomas Stenersen</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>light_scan_sim</build_depend>
+  <build_depend>cmake_modules</build_depend>
+
+  <run_depend>cmake_modules</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>light_scan_sim</run_depend>
+  <run_depend>tf</run_depend>
+
+
+<export>
+  <rosdoc config="./config/rosdoc.yaml" />
+</export>
+</package>

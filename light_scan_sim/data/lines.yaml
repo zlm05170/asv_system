@@ -1,0 +1,11 @@
+frame_id: "/map"
+segments:
+  - type: 0  # Regular wall
+    start: [-100., 300.]
+    end: [-100., -0.]
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+<launch>
+
+  <!-- <arg name="map_file" default="$(find light_scan_sim)/data/empty.yaml"/> -->
+  <arg name="map_file" value="$(find asv_system)/config/maps/hovik.yaml" />
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- The scan simulator -->
+  <node name="light_scan_sim" pkg="light_scan_sim" type="light_scan_sim_node" output="screen">
+    <rosparam file="$(find light_scan_sim)/config/config_asv.yaml" command="load" />
+  </node>
+
+  <!-- RViz -->
+  <!-- <node name="visualisation" pkg="rviz" type="rviz" args="-d $(find light_scan_sim)/data/test.rviz" /> -->
+
+</launch>

@@ -1,0 +1,63 @@
+﻿<launch>
+  <include file="$(find asv_simulator)/launch/default.launch">
+    <arg name="waypoint_file" value="$(find asv_simulator)/config/mpc_waypoints/south_to_north.yaml" />
+    <arg name="initial_state" value="[0.0,-250.0, 1.56, 3.,0.,0.]" />
+    <arg name="u_d" value="3.0" />
+  </include>
+
+  <!-- Obstacle ship -->
+  <include file="$(find asv_simulator)/launch/default.launch">
+    <arg name="waypoint_file" value="$(find asv_simulator)/config/mpc_waypoints/ship1_mult_crossing_from_SB.yaml" />
+    <arg name="use_vo" value="False" />
+    <arg name="use_sb_mpc" value="False" />
+    <arg name="vessel_model_file" value="$(find asv_simulator)/config/models/ship1.urdf" />
+    <arg name="namespace" value="obstacles/ship1" />
+    <arg name="shipname" value="ship1" />
+    <arg name="initial_state" value="[585.0, 440.0, -3.14, 2.,0.,0.]" />
+    <arg name="u_d" value="3.0" />
+  </include>
+
+  <!-- Obstacle ship -->
+  <include file="$(find asv_simulator)/launch/default.launch">
+    <arg name="waypoint_file" value="$(find asv_simulator)/config/mpc_waypoints/ship2_mult_crossing_from_SB.yaml" />
+    <arg name="use_vo" value="False" />
+    <arg name="use_sb_mpc" value="False" />
+    <arg name="vessel_model_file" value="$(find asv_simulator)/config/models/ship2.urdf" />
+    <arg name="namespace" value="obstacles/ship2" />
+    <arg name="shipname" value="ship2" />
+    <arg name="initial_state" value="[600.0, 480.0, -3.14, 1.,0.,0.]" />
+    <arg name="u_d" value="3." />
+  </include>
+
+
+  <!-- Obstacle ship -->
+  <include file="$(find asv_simulator)/launch/default.launch">
+    <arg name="waypoint_file" value="$(find asv_simulator)/config/mpc_waypoints/ship3_mult_crossing_from_SB.yaml" />
+    <arg name="use_vo" value="False" />
+    <arg name="use_sb_mpc" value="False" />
+    <arg name="vessel_model_file" value="$(find asv_simulator)/config/models/ship3.urdf" />
+    <arg name="namespace" value="obstacles/ship3" />
+    <arg name="shipname" value="ship3" />
+    <arg name="initial_state" value="[600.0,420.0,-3.14, 2.,0.,0.]" />
+    <arg name="u_d" value="3.0" />
+  </include>
+
+
+
+  <!-- <param name="wave_filter_gain" value="60." /> -->
+  <include file="$(find asv_obstacle_tracker)/launch/default.launch"/>
+
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find asv_simulator)/config/rviz/four_vessels.rviz" />
+
+
+  <!-- <node pkg="rosbag" type="record" name="rosbag_record" args="-O /home/ingerbha/Master/ros_records/bagfiles/mult_crossing_from_SB.bag /asv/state /asv/offset /obstacles/ship1/state /obstacles/ship2/state /obstacles/ship3/state" /> -->
+
+
+  <!-- <node pkg="rosbag" -->
+  <!-- type="record" -->
+  <!-- name="rosbag_record" -->
+  <!-- args="-O /home/thomas/Dropbox/NTNU/master/code/python/bagfiles/head_on_and_crossing.bag /asv/state /obstacle_states /obstacles/ship1/state /obstacles/ship2/state" -->
+  <!--       /> -->
+
+</launch>

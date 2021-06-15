@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package>
+  <name>asv_ctrl_sb_mpc</name>
+  <version>0.0.0</version>
+  <description>The asv_ctrl_sb_mpc package</description>
+  <maintainer email="inger_hagen@hotmail.com">Inger Hagen</maintainer>
+  <license>MIT</license>
+  <author email="inger_hagen@hotmail.com">Inger Hagen</author> 
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>asv_msgs</build_depend>
+  <build_depend>asv_simulator</build_depend>
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+  <run_depend>asv_msgs</run_depend>
+  <run_depend>asv_simulator</run_depend>
+  <run_depend>cmake_modules</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+
+</package>

@@ -1,0 +1,10 @@
+# goal 
+float32 x
+float32 y
+---
+# result 
+float32 reward
+bool done
+---
+# feedback
+float32 distance

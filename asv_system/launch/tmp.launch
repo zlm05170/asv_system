@@ -1,0 +1,31 @@
+﻿<launch>
+  <include file="$(find asv_simulator)/launch/asv.launch">
+    <arg name="waypoint_file" value="$(find asv_simulator)/config/waypoints/south_to_north.yaml" />
+    <arg name="u_d" value="4.0" />
+    <arg name="use_sb_mpc" value="False" />
+    <!-- <arg name="initial_state" value="[0., 0., 0., 0.,0.,0.]" /> -->
+  </include>
+
+  <!-- <include file="$(find asv_system)/launch/map_server.launch">
+    <arg name="mapfile" value="$(find asv_system)/config/maps/big_block.yaml" />
+  </include> -->
+
+  <!-- Obstacle ship -->
+  <include file="$(find asv_simulator)/launch/obstacle.launch">
+    <arg name="waypoint_file" value="$(find asv_simulator)/config/waypoints/test.yaml" />
+    <arg name="use_vo" value="False" />
+    <arg name="use_sb_mpc" value="False" />
+    <arg name="vessel_model_file" value="$(find asv_simulator)/config/models/ship1.urdf" />
+    <arg name="namespace" value="obstacles/ship1" />
+    <arg name="shipname" value="ship1" />
+    <arg name="initial_state" value="[400.0, 0.0, -3.14, 1.,0.,0.]" />
+  </include>
+
+  <!-- <param name="wave_filter_gain" value="30." /> -->
+  <include file="$(find asv_obstacle_tracker)/launch/default.launch"/>
+
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find asv_simulator)/config/rviz/two_vessels.rviz" />
+
+  <!-- <node pkg="rosbag" type="record" name="rosbag_record" args="-O /home/ral/data/head_on.bag /tf /asv/state /asv/pose /asv/path /asv/waypoints /obstacles/ship1/state" /> -->
+</launch>

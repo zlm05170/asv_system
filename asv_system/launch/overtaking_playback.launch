@@ -1,0 +1,23 @@
+<launch>
+    <include file="$(find asv_simulator)/launch/bag_playback.launch">
+    </include>
+
+    <include file="$(find asv_system)/launch/map_server.launch">
+        <arg name="mapfile" value="$(find asv_system)/config/maps/big_block.yaml" />
+    </include>
+
+    <include file="$(find asv_simulator)/launch/bag_playback.launch">
+        <arg name="vessel_model_file" value="$(find asv_simulator)/config/models/ship1.urdf" />
+        <arg name="namespace" value="obstacles/ship1" />
+        <arg name="shipname" value="ship1" />
+    </include>
+
+    <include file="$(find asv_simulator)/launch/bag_playback.launch">
+        <arg name="vessel_model_file" value="$(find asv_simulator)/config/models/ship2.urdf" />
+        <arg name="namespace" value="obstacles/ship2" />
+        <arg name="shipname" value="ship2" />
+    </include>
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find asv_simulator)/config/rviz/three_vessels.rviz" />
+
+</launch>
