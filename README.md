@@ -27,9 +27,12 @@ This package contains:
 
 + `asv_system`: metapackage with launch files and more!
 
-+ `state_estimator`: unfinished package for estimating the ASV pose given GPS
++ `state_estimator`: finished package for estimating the ASV pose given GPS
   and IMU data.
 
++ `waypoint_generator`: finished package for implementing DRL to learn the next waypoint based on Tianshou
+  and developed algorithms.
+ 
 ##  Tips
 
 <!-- * start_state: 就是设置asv_simulator里面的initial state，采用setState函数
